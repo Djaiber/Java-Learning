@@ -23,9 +23,6 @@ public class Shopping {
         return shoppingCode;
     }
 
-    public void setShoppingCode(String shoppingCode) {
-        this.shoppingCode = shoppingCode;
-    }
 
     public String getShoppingDate() {
         return shoppingDate;
