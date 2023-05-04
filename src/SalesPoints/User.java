@@ -3,20 +3,15 @@ package SalesPoints;
 public abstract class User {
     protected String userID;
     protected String nameUser;
-    protected String password;
-    protected String registerDate;
-
-
-    public User(String userID, String nameUser, String password, String registerDate) {
+    protected  String emailUser;
+    protected String passwordUser;
+    public User(String userID, String nameUser,String emailUser, String passwordUser) {
         this.userID = userID;
         this.nameUser= nameUser;
-        this.password = password;
-        this.registerDate = registerDate;
-    }
+        this.emailUser = emailUser;
+        this.passwordUser = passwordUser;
 
-    protected User(String password) {
     }
-
     public String getUserID() {
         return userID;
     }
@@ -26,25 +21,14 @@ public abstract class User {
     public String getNameUser() {
         return nameUser;
     }
-
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
     }
-    public String getPassword() {
-        return password;
+    public String getPasswordUser() {
+        return passwordUser;
     }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPasswordUser(String passwordUser) {
+        this.passwordUser = passwordUser;
     }
-
-    public String getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(String registerDate) {
-        this.registerDate = registerDate;
-    }
-
     public abstract boolean verifyLogin(String userID, String password);
 }

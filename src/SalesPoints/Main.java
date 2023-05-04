@@ -1,31 +1,44 @@
 package SalesPoints;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Objects;
+import java.io.*;
+
 
 public class Main {
 
 
     public static void main(String[] args)throws IOException {
+
+        Admin admin = new Admin("125467","Martha","martha54leo@gmail.com","de8todo23");
+        Cliente cliente1 = new Cliente("646416","Jaiber Diaz","djaiver9@gmailcom","jaibL123", "2023/05/04");
+
+
+        FileOutputStream fileOutputStream = new FileOutputStream("ObjetoAdmin.txt");
+        ObjectOutputStream objectOutStream = new ObjectOutputStream(fileOutputStream);
+        objectOutStream.writeObject(admin);
+        objectOutStream.close();
+
+
+
+
+
         BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
 
 
-        System.out.println("------DISTRIPIZZA POINTS------\n");
-        System.out.println("1. Login\n");
-        System.out.println("2. Sing in\n");
+
+        System.out.println("------DISTRIPIZZA POINTS------");
+        System.out.println("1. Login");
+        System.out.println("2. Sing in");
         int menu = Integer.parseInt(in.readLine());
         switch (menu) {
             case 1:
-                System.out.println("\t Ingrese su nombre de usuario:\n ");
+                System.out.println("\t Ingrese su nombre de usuario: ");
                 String userNameAux = in.readLine();
-                System.out.println("\t Ingrese su password:\n");
-                String passwordAux = in.readLine();
-                if (userNameAux == Admin.getAdminName()) {
-                    System.out.println("Ingresó como Administrador\n");
-                    break;
+                if (userNameAux== "Martha"){
+                    System.out.println("Ingresó como administrador");
                 }
+                System.out.println("\t Ingrese su password:");
+                String passwordAux = in.readLine();
+
             //---------------------------------------------//
             case 2:
 
@@ -36,7 +49,6 @@ public class Main {
             default:
                 // code to execute if expression doesn't match any of the specified values
         }
-        Admin admin = new Admin("Martha","martha54leo@gmail.com","de8todo23");
-        Cliente cliente1 = new Cliente("Juanito", "jaunito33@gmail.com","317304511","sghd549");
+
     }
 }

@@ -1,28 +1,30 @@
 package SalesPoints;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Shopping {
+public class Shopping extends Cliente {
     BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
-
 
     private String shoppingCode;
     private String shoppingDate;
     private float value;
     private float bonoPoints;
-    public Shopping(String shoppingCode, String shoppingDate, float value, float bonoPoints) {
+    public Shopping(String userID, String shoppingCode, String shoppingDate, float value, float bonoPoints) {
+        super(userID);//Tengo que heredar todos los atributos? Solamente necesito un atributo
         this.shoppingCode = shoppingCode;
         this.shoppingDate = shoppingDate;
         this.value = value;
         this.bonoPoints = bonoPoints;
     }
 
-    public static String getShoppingCode() {
+    public String getShoppingCode() {
         return shoppingCode;
     }
 
+    public void setShoppingCode(String shoppingCode) {
+        this.shoppingCode = shoppingCode;
+    }
 
     public String getShoppingDate() {
         return shoppingDate;

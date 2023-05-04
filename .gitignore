@@ -1,7 +1,9 @@
 ### IntelliJ IDEA ###
 out/
-
+ObjetoAdmin.txt
+tareas.txt
 !**/src/test/**/out/
+*.idea
 
 ### Eclipse ###
 .apt_generated

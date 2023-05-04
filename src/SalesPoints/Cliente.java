@@ -1,48 +1,50 @@
 package SalesPoints;
 
-public class Cliente extends User{
-    protected String customerName;
-    protected String customerEmail;
-    protected String customerPhone;
+import java.io.Serializable;
 
-    Cliente(String customerName, String customerEmail, String customerPhone, String password) {
+public class Cliente extends User implements Serializable {
 
-        super(password);
-        this.customerName = customerName;
-        this.customerEmail = customerEmail;
-        this.customerPhone = customerPhone;
+    protected String resgisterDate;
+    public Cliente(String userID, String nameUser, String emailUser, String passwordUser, String resgisterDate) {
+        super(userID,nameUser,emailUser,passwordUser);
+        this.resgisterDate= resgisterDate;
     }
 
 
-    public  String getCustomerName()
-    {
-        return customerName;
+    @Override
+    public String getUserID() {
+        return super.getUserID();
     }
-
-    public void setCustomerName(String customerName) {
-
-        this.customerName = customerName;
+    @Override
+    public void setUserID(String userID) {
+        super.setUserID(userID);
     }
-
-    public String getCustomerEmail() {
-        return customerEmail;
+    @Override
+    public String getNameUser() {
+        return super.getNameUser();
     }
-
-    public void setCustomerEmail(String customerEmail) {
-        this.customerEmail = customerEmail;
+    @Override
+    public void setNameUser(String nameUser) {
+        super.setNameUser(nameUser);
     }
-
-    public String getCustomerPhone() {
-        return customerPhone;
+    @Override
+    public String getPasswordUser() {
+        return super.getPasswordUser();
     }
-
-    public void setCustomerPhone(String customerPhone) {
-        this.customerPhone = customerPhone;
+    @Override
+    public void setPasswordUser(String passwordUser) {
+        super.setPasswordUser(passwordUser);
     }
     public String registerUser(){
         System.out.println("REGISTRAR NUEVO CLIENTE");
-        System.out.println("Ingrese su nombre:\n");
+        System.out.println("Ingrese su nombre:");
         return null;
+    }
+    public String getResgisterDate() {
+        return resgisterDate;
+    }
+    public void setResgisterDate(String resgisterDate) {
+        this.resgisterDate = resgisterDate;
     }
     @Override
     public boolean verifyLogin(String userID, String password) {
