@@ -2,20 +2,26 @@ package SalesPoints;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.Serializable;
+import java.lang.foreign.SegmentAllocator;
 
-public class Shopping extends Cliente {
+public class Shopping extends Cliente implements Serializable {
     BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
 
     private String shoppingCode;
     private String shoppingDate;
     private float value;
-    private float bonoPoints;
+
     public Shopping(String userID, String shoppingCode, String shoppingDate, float value, float bonoPoints) {
-        super(userID);//Tengo que heredar todos los atributos? Solamente necesito un atributo
+        super(userID, bonoPoints);//Tengo que heredar todos los atributos? Solamente necesito un atributo
         this.shoppingCode = shoppingCode;
         this.shoppingDate = shoppingDate;
         this.value = value;
-        this.bonoPoints = bonoPoints;
+
+    }
+
+    public Shopping(String userID, float bonoPoints) {
+        super(userID, bonoPoints);
     }
 
     public String getShoppingCode() {
