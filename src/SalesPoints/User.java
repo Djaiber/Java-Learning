@@ -30,6 +30,15 @@ public abstract class User {
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
     }
+
+    public String getEmailUser() {
+        return emailUser;
+    }
+
+    public void setEmailUser(String emailUser) {
+        this.emailUser = emailUser;
+    }
+
     public String getPasswordUser() {
         return passwordUser;
     }
