@@ -7,7 +7,7 @@ public class Cliente extends User implements Serializable {
     protected String phoneNumber;
     protected String resgisterDate;
     protected float bonoPoints;
-    private final String userId1;//???
+    private final String userId1;
 
 
     public Cliente(String userID, String nameUser, String emailUser, String passwordUser, String phoneNumber, String resgisterDate, float bonoPoints) {
@@ -93,13 +93,12 @@ public class Cliente extends User implements Serializable {
 
     @Override
     public String toString() {
-        return "Cliente{" +
-                "userID=" + userID + '\''+
-                "nameUser='" + nameUser + '\'' +
-                ", emailUser='" + emailUser + '\'' +
-                "phoneNumber='" + phoneNumber +'\''+
-                ", resgisterDate='" +resgisterDate+'\''+
-                ", bonoPoints=' " + bonoPoints+
-                '}';
+        return userID +
+                ";" + nameUser +
+                ";" + emailUser +
+                ";" + phoneNumber +
+                ";" + passwordUser +
+                ";" + resgisterDate +
+                ";"+ bonoPoints;
     }
 }
