@@ -4,13 +4,15 @@ import java.io.Serializable;
 
 public class Cliente extends User implements Serializable {
 
+    protected String phoneNumber;
     protected String resgisterDate;
     protected float bonoPoints;
     private final String userId1;//???
 
 
-    public Cliente(String userID, String nameUser, String emailUser, String passwordUser, String resgisterDate, float bonoPoints) {
+    public Cliente(String userID, String nameUser, String emailUser, String passwordUser, String phoneNumber, String resgisterDate, float bonoPoints) {
         super(userID,nameUser,emailUser,passwordUser);
+        this.phoneNumber = phoneNumber;
         this.resgisterDate= resgisterDate;
         this.bonoPoints = bonoPoints;
         this.userId1 = "";
@@ -39,6 +41,16 @@ public class Cliente extends User implements Serializable {
     public void setNameUser(String nameUser) {
         super.setNameUser(nameUser);
     }
+
+    @Override
+    public String getEmailUser() {
+        return super.getEmailUser();
+    }
+
+    @Override
+    public void setEmailUser(String emailUser) {
+        super.setEmailUser(emailUser);
+    }
     @Override
     public String getPasswordUser() {
         return super.getPasswordUser();
@@ -47,6 +59,22 @@ public class Cliente extends User implements Serializable {
     public void setPasswordUser(String passwordUser) {
         super.setPasswordUser(passwordUser);
     }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public float getBonoPoints() {
+        return bonoPoints;
+    }
+
+    public void setBonoPoints(float bonoPoints) {
+        this.bonoPoints = bonoPoints;
+}
+
     public String registerUser(){
         System.out.println("REGISTRAR NUEVO CLIENTE");
         System.out.println("Ingrese su nombre:");
@@ -63,4 +91,15 @@ public class Cliente extends User implements Serializable {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "userID=" + userID + '\''+
+                "nameUser='" + nameUser + '\'' +
+                ", emailUser='" + emailUser + '\'' +
+                "phoneNumber='" + phoneNumber +'\''+
+                ", resgisterDate='" +resgisterDate+'\''+
+                ", bonoPoints=' " + bonoPoints+
+                '}';
+    }
 }

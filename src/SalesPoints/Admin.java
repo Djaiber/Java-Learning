@@ -40,5 +40,12 @@ public class Admin extends User implements Serializable {
         return true;
     }
 
-
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "userID='" + userID + '\'' +
+                ", nameUser='" + nameUser + '\'' +
+                ", emailUser='" + emailUser + '\'' +
+                '}';
+    }
 }
