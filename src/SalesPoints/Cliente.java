@@ -1,5 +1,8 @@
 package SalesPoints;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 
 public class Cliente extends User implements Serializable {
@@ -87,8 +90,13 @@ public class Cliente extends User implements Serializable {
         this.resgisterDate = resgisterDate;
     }
     @Override
-    public boolean verifyLogin(String userID, String password) {
-        return false;
+    public int login(String userID, String password) throws IOException {
+        System.out.println("Ingresó como CLIENTE");
+        System.out.println("------------------ MENÚ CLIENTE --------------------");
+        System.out.println("Digite 1 para CHECK SALES y 2 para  SALIR:");
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        int optionCliente = Integer.parseInt(in.readLine());
+        return optionCliente;
     }
 
     @Override
