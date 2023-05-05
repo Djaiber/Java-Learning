@@ -1,5 +1,6 @@
 package SalesPoints;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 public abstract class User implements Serializable {
@@ -16,10 +17,10 @@ public abstract class User implements Serializable {
 
 
     }
+
     public User(String userID) {
         this.userID = userID;
     }
-
     public String getUserID() {
         return userID;
     }
@@ -32,21 +33,19 @@ public abstract class User implements Serializable {
     public void setNameUser(String nameUser) {
         this.nameUser = nameUser;
     }
-
     public String getEmailUser() {
         return emailUser;
     }
-
     public void setEmailUser(String emailUser) {
         this.emailUser = emailUser;
     }
-
     public String getPasswordUser() {
         return passwordUser;
     }
     public void setPasswordUser(String passwordUser) {
         this.passwordUser = passwordUser;
     }
-    
-    public abstract boolean verifyLogin(String userID, String passwordUser);
+
+    public abstract int login(String userID, String passwordUser) throws IOException;
+
 }
