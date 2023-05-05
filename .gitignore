@@ -1,9 +1,11 @@
 ### IntelliJ IDEA ###
 out/
 ObjetoAdmin.txt
+ObjetoCliente.txt
 tareas.txt
 !**/src/test/**/out/
 *.idea
+*.iml
 
 
 ### Eclipse ###
