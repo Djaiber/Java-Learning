@@ -1,6 +1,8 @@
 package SalesPoints;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 
@@ -69,10 +71,15 @@ public class Main {
             System.out.println("Ingrese su Contraseña:");
             String ClientePasswordUserAux = in.readLine();
 
+            LocalDate actualDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            String ClienteRegisterDateAux = actualDate.format(formatter);
+
+
             Cliente clienteNew;
             clienteNew = new Cliente(ClienteIDAux,ClienteUserNameAux,
                    ClienteEmailUserAux, ClientePhoneNumberAux,
-                    ClientePasswordUserAux,"2023/20/21",0);
+                    ClientePasswordUserAux,ClienteRegisterDateAux,0);
 
             System.out.println("Datos ingresados= "+ clienteNew);
             clienteNew.setUserID(null);
