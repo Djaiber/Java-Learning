@@ -1,12 +1,13 @@
 package SalesPoints;
 
 import java.io.*;
+import java.util.Random;
 
 
 public class Main {
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         Admin admin = new Admin("125467", "Martha", "martha54leo@gmail.com", "12345678");
         Cliente cliente1 = new Cliente("646416", "Jaiber Diaz",
                 "djaiver9@gmailcom", "jaibL123","3173074159", "2023/05/04", 0);
@@ -15,6 +16,13 @@ public class Main {
         ObjectOutputStream objectOutStream = new ObjectOutputStream(fileOutputStream);
         objectOutStream.writeObject(admin);
         objectOutStream.close();
+
+        FileInputStream fileInputStream = new FileInputStream("ObjetoAdmin.txt");//Método para leer los atributos del admin
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Admin martha = (Admin) objectInputStream.readObject();
+        System.out.println("------ADMINISTRADOR------");
+        System.out.println(martha);
+        objectInputStream.close();
 
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 
@@ -49,6 +57,9 @@ public class Main {
             System.out.println("----------------------------------------------------------");
             System.out.println("-------------------------SIGN IN--------------------------");
             System.out.println("----------------------------------------------------------");
+
+            int randomUserID = (int) ( Math.random() * 999999);
+            String ClienteIDAux = Integer.toString(randomUserID);
             System.out.println("Ingrese su nombre:");
             String ClienteUserNameAux = in.readLine();
             System.out.println("Ingrese su correo:");
@@ -58,17 +69,19 @@ public class Main {
             System.out.println("Ingrese su Contraseña:");
             String ClientePasswordUserAux = in.readLine();
 
-            Cliente clienteNew = new Cliente("464646",cliente1.setNameUser(ClienteUserNameAux),
-                    cliente1.setEmailUser(ClienteEmailUserAux), cliente1.setPhoneNumber(ClientePhoneNumberAux),
-                    cliente1.setPasswordUser(ClientePasswordUserAux),"2023/20/21",0);
-            objectOutStream.writeObject(clienteNew);
-            objectOutStream.close();
+            Cliente clienteNew;
+            clienteNew = new Cliente(ClienteIDAux,ClienteUserNameAux,
+                   ClienteEmailUserAux, ClientePhoneNumberAux,
+                    ClientePasswordUserAux,"2023/20/21",0);
+
+            System.out.println("Datos ingresados= "+ clienteNew);
             clienteNew.setUserID(null);
             clienteNew.setNameUser(null);
             clienteNew.setEmailUser(null);
             clienteNew.setPhoneNumber(null);
             clienteNew.setResgisterDate(null);
             clienteNew.setPasswordUser(null);
+            System.out.println("Nuevos datos = "+ clienteNew);
         }
     }
 }

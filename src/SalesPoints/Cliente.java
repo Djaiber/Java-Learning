@@ -91,4 +91,15 @@ public class Cliente extends User implements Serializable {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "userID=" + userID + '\''+
+                "nameUser='" + nameUser + '\'' +
+                ", emailUser='" + emailUser + '\'' +
+                "phoneNumber='" + phoneNumber +'\''+
+                ", resgisterDate='" +resgisterDate+'\''+
+                ", bonoPoints=' " + bonoPoints+
+                '}';
+    }
 }
