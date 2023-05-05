@@ -47,5 +47,6 @@ public abstract class User implements Serializable {
     public void setPasswordUser(String passwordUser) {
         this.passwordUser = passwordUser;
     }
+    
     public abstract boolean verifyLogin(String userID, String passwordUser);
 }
