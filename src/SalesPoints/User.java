@@ -5,13 +5,19 @@ public abstract class User {
     protected String nameUser;
     protected  String emailUser;
     protected String passwordUser;
+
     public User(String userID, String nameUser,String emailUser, String passwordUser) {
         this.userID = userID;
         this.nameUser= nameUser;
         this.emailUser = emailUser;
         this.passwordUser = passwordUser;
 
+
     }
+    public User(String userID) {
+        this.userID = userID;
+    }
+
     public String getUserID() {
         return userID;
     }
@@ -30,5 +36,5 @@ public abstract class User {
     public void setPasswordUser(String passwordUser) {
         this.passwordUser = passwordUser;
     }
-    public abstract boolean verifyLogin(String userID, String password);
+    public abstract boolean verifyLogin(String userID, String passwordUser);
 }

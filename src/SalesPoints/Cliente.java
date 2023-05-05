@@ -5,11 +5,23 @@ import java.io.Serializable;
 public class Cliente extends User implements Serializable {
 
     protected String resgisterDate;
-    public Cliente(String userID, String nameUser, String emailUser, String passwordUser, String resgisterDate) {
+    protected float bonoPoints;
+    private final String userId1;//???
+
+
+    public Cliente(String userID, String nameUser, String emailUser, String passwordUser, String resgisterDate, float bonoPoints) {
         super(userID,nameUser,emailUser,passwordUser);
         this.resgisterDate= resgisterDate;
+        this.bonoPoints = bonoPoints;
+        this.userId1 = "";
+
     }
 
+    public Cliente(String userID, float bonoPoints) {
+        super(userID);
+        this.userId1 = "";
+        this.bonoPoints = bonoPoints;
+    }
 
     @Override
     public String getUserID() {
