@@ -27,7 +27,7 @@ public class Main {
         System.out.println(savedAdmin);
         objectInputStream.close();
 
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
 
         System.out.println("----------------------------------------------------------");
         System.out.println("------------------ DISTRIPIZZA POINTS --------------------");
@@ -35,20 +35,13 @@ public class Main {
         System.out.println("Digite 1 para LOGIN or 2 para SIGN IN:");
         System.out.println("1. LOGIN");
         System.out.println("2. SIGN IN");
-
-        int menu = Integer.parseInt(in.readLine());
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+        int menu =0;
+        menu = CommonMethods.ExceptionGod(menu);
+        int goodOption = menu;
         do {
-            //Opción para salir del programa
-            if (menu == 25) {
-                break;
-            }
-            //Validación de opción
-            while (menu != 1 && menu != 2) {
-                System.out.println("!Opción no válida¡");
-                System.out.println("Ingrese una nueva opción:");
-                menu = Integer.parseInt(in.readLine());
-            }
-            if (menu == 1) {
+
+            if (goodOption == 1) {
                 System.out.println("----------------------------------------------------------");
                 System.out.println("------------------------- LOGIN --------------------------");
                 System.out.println("----------------------------------------------------------");
@@ -73,7 +66,7 @@ public class Main {
 
 
             }
-            if (menu == 2) {
+            if (goodOption == 2) {
                 System.out.println("----------------------------------------------------------");
                 System.out.println("------------------------ SIGN IN -------------------------");
                 System.out.println("----------------------------------------------------------");
@@ -120,7 +113,6 @@ public class Main {
                 clienteNew.setPhoneNumber(null);
                 clienteNew.setResgisterDate(null);
                 clienteNew.setPasswordUser(null);
-                System.out.println("Nuevos datos = " + clienteNew);
             }
             System.out.println("----------------------------------------------------------");
             System.out.println("------------------ DISTRIPIZZA POINTS --------------------");
@@ -128,17 +120,17 @@ public class Main {
             System.out.println("Digite 1 para LOGIN o 2 para SIGN IN:");
             System.out.println("1.LOGIN");
             System.out.println("2.SIGN IN");
-            menu = Integer.parseInt(in.readLine());
+            goodOption = Integer.parseInt(in.readLine());
             //Opción para apagar el programa
-            if (menu == 25) {
+            if (goodOption == 25) {
                 break;
             }
             //Validación de opción
-            while (menu != 1 && menu != 2) {
+            while (goodOption != 1 && goodOption != 2) {
                 System.out.println("!Opción no válida¡");
                 System.out.println("Ingrese una nueva opción:");
-                menu = Integer.parseInt(in.readLine());
+                goodOption = Integer.parseInt(in.readLine());
             }
-        }while (menu != 25) ;
+        }while (goodOption != 25) ;
     }
 }
