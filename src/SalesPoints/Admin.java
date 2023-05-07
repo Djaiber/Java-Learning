@@ -1,15 +1,12 @@
 package SalesPoints;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Serializable;
+import java.io.*;
 
 public class Admin extends User implements Serializable{
 
 
-    public Admin (String userID, String nameUser, String emailUser, String password) {
-        super (userID,nameUser,emailUser,password);
+    public Admin (String userID, String nameUser, String emailUser, String passwordUser) {
+        super (userID,nameUser,emailUser,passwordUser);
     }
     @Override
     public String getUserID() {
@@ -42,33 +39,32 @@ public class Admin extends User implements Serializable{
         System.out.println("------------------ MENÚ ADMINISTRADOR --------------------");
         System.out.println("Digite 1 para CHECK SALES y 2 para  SALIR:");
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int optionAdmin = Integer.parseInt(in.readLine());
-        while (optionAdmin != 1 && optionAdmin != 2) {
-            System.out.println("!Opción no válida");
-            System.out.println("Ingrese una nueva opción:");
-            optionAdmin = Integer.parseInt(in.readLine());
-        }
-        return optionAdmin;
+        int menu =0;
+        menu = CommonMethods.ExceptionMenuMain(menu);
+        return menu;
     }
-    public int checkSales(int lookSales) throws IOException{
+    public int checkSales(int lookSales) throws IOException, ClassNotFoundException {
         System.out.println("REVISANDO LAS VENTAS");
-        System.out.println("\tDigite 2 para SALIR:");
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int optionAdmin = Integer.parseInt(in.readLine());
-        while (optionAdmin != 2) {
-            System.out.println("!Opción no válida");
-            System.out.println("Ingrese una nueva opción:");
-            optionAdmin = Integer.parseInt(in.readLine());
-        }
-        return optionAdmin;
-    }
+        //Leer fichero ObjectCliente
+        FileInputStream fileInputStreamCliente = new FileInputStream("ObjetoCliente.txt");//Método para leer los atributos del admin
+        ObjectInputStream objectInputStreamCliente = new ObjectInputStream(fileInputStreamCliente);
+        Cliente savedcliente = (Cliente) objectInputStreamCliente.readObject();
+        System.out.println("------CLIENTES REGISTRADOS------");
+        //Método para mostrar todos los clientes registrados
 
+        System.out.println(savedcliente);
+        objectInputStreamCliente.close();
+        System.out.println("\tDigite 2 para SALIR:");
+        int menu =0;
+        menu = CommonMethods.ExceptionMenuAdmin(menu);
+        return menu;
+    }
+    //Formato CSV
     @Override
     public String toString() {
-        return "Admin{" +
-                "userID='" + userID + '\'' +
-                ", nameUser='" + nameUser + '\'' +
-                ", emailUser='" + emailUser + '\'' +
-                '}';
+        return  userID +
+                ';' + nameUser +
+                ';' + passwordUser +
+                ";" + emailUser;
     }
 }
