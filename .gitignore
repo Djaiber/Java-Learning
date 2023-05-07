@@ -2,6 +2,7 @@
 out/
 ObjetoAdmin.txt
 ObjetoCliente.txt
+uml.png
 tareas.txt
 !**/src/test/**/out/
 *.idea
