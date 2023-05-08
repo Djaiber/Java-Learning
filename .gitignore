@@ -1,7 +1,6 @@
 ### IntelliJ IDEA ###
 out/
-ObjetoAdmin.txt
-ObjetoCliente.txt
+Ficheros/
 uml.png
 tareas.txt
 !**/src/test/**/out/
