@@ -46,10 +46,10 @@ public class Admin extends User implements Serializable{
     public int checkSales(int lookSales) throws IOException, ClassNotFoundException {
         System.out.println("REVISANDO LAS VENTAS");
         //Leer fichero ObjectCliente
-        FileInputStream fileInputStreamCliente = new FileInputStream("ObjetoCliente.txt");//Método para leer los atributos del admin
+        FileInputStream fileInputStreamCliente = new FileInputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoCliente.txt");//Método para leer los atributos del admin
         ObjectInputStream objectInputStreamCliente = new ObjectInputStream(fileInputStreamCliente);
         Cliente savedcliente = (Cliente) objectInputStreamCliente.readObject();
-        System.out.println("------CLIENTES REGISTRADOS------");
+        System.out.println("----------------CLIENTES REGISTRADOS-----------------");
         //Método para mostrar todos los clientes registrados
 
         System.out.println(savedcliente);
