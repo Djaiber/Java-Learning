@@ -5,8 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class CommonMethods {
+    public int ContadorClientes;
 
-
+    public CommonMethods(int contadorClientes) {
+        ContadorClientes = contadorClientes;
+    }
 
     public static int ExceptionMenuMain(int menu) throws IOException {
 
@@ -53,7 +56,7 @@ public class CommonMethods {
                 BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
                 menu = Integer.parseInt(in.readLine());
                 //Opción (25) para apagar el programa
-                if (menu== 1 || menu == 2 || menu == 3 || menu == 4) {
+                if (menu== 1 || menu == 2 || menu == 3 || menu == 4 || menu==5) {
                     break;
                 }
                 System.out.println("Digite un número válido");
