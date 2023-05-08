@@ -1,24 +1,27 @@
 package SalesPoints;
 
 import java.io.*;
+import java.util.Scanner;
 
 
 public class Main {
 
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Scanner scanner = new Scanner(System.in);
         //Atributos objetos administrador
         Admin admin = new Admin("125467", "Martha", "martha54leo@gmail.com", "12345678");
         //Atributos ejemplo de objeto Cliente
         Cliente cliente1 = new Cliente("646416", "Jaiber Diaz",
                 "djaiver9@gmailcom", "jaibL123", "3173074159", "2023/05/04", 0);
+        CommonMethods numberRegistered = new CommonMethods(2);
         //Escribe los atributos de administrador en el fichero
-        FileOutputStream fileOutputStreamAdmin = new FileOutputStream("ObjetoAdmin.txt");
+        FileOutputStream fileOutputStreamAdmin = new FileOutputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoAdmin.txt");
         ObjectOutputStream objectOutStreamAdmin= new ObjectOutputStream(fileOutputStreamAdmin);
         objectOutStreamAdmin.writeObject(admin);
         objectOutStreamAdmin.close();
         //Lee e imprime los atributos del administrador (admin)
-        FileInputStream fileInputStream = new FileInputStream("ObjetoAdmin.txt");
+        FileInputStream fileInputStream = new FileInputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoAdmin.txt");
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         Admin savedAdmin = (Admin) objectInputStream.readObject();
         System.out.println(savedAdmin);
@@ -56,14 +59,36 @@ public class Main {
                         System.out.println("\t Ha salido del MENÚ ADMINISTRADOR");
                     }
                 }
-                if (!userNameAux.equals(admin.getNameUser()) && !passwordAux.equals(admin.getPasswordUser())) {
-                    int login = cliente1.login(userNameAux,passwordAux);
-                }
-                //DEFINIR MÉTODOS
-                //1. register buy
-                //2. show historial
-                //3. update profile
-                //4. Salir menu cliente
+                int login = 0;
+                do {
+                    if (!userNameAux.equals(admin.getNameUser()) && !passwordAux.equals(admin.getPasswordUser())) {
+                        login = cliente1.login(userNameAux, passwordAux);
+                    }
+
+                    if (login == 1) {
+                        System.out.println("---------------REGISTRAR COMPRA-------------------");
+                        Shopping.registerBuy();
+                        scanner.nextLine();
+                    }
+                    if (login == 2) {
+                        System.out.println("---------------HISTORIAL DE COMPRAS-------------");
+                        Shopping.showHistorial();
+                        scanner.nextLine();
+                    }
+                    if (login == 3) {
+                        System.out.println("---------------RECLAMAR RECOMPENSAS-------------");
+                        Bonification.pickUpBono();
+                        scanner.nextLine();
+                    }
+                    if (login == 4) {
+                        System.out.println("--------------ACTUALIZAR PERFIL-------------------");
+                        Cliente UpdateProfile = Cliente.UpdateProfile(login);
+                        scanner.nextLine();
+
+                    }
+                }while(login!=5);
+                    System.out.println("SALIÓ DEL MENU CLIENTE");
+
 
             }
             if (goodOption == 2) {
@@ -72,7 +97,8 @@ public class Main {
                 System.out.println("----------------------------------------------------------");
                 //Método para registrar un nuevo cliente
                 Cliente registered = Cliente.registerCliente(goodOption);
-
+                numberRegistered.ContadorClientes = numberRegistered.ContadorClientes + 1;
+                System.out.println("Número de Clientes Registrados: " + numberRegistered.ContadorClientes);
                 //Limpia los atributos del objeto registered
                 registered.setUserID(null);
                 registered.setNameUser(null);
