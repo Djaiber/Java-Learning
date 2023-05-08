@@ -106,12 +106,12 @@ public class Cliente extends User implements Serializable {
                 ClientePasswordUserAux, ClienteRegisterDateAux, 0);
 
         //Escribe los atributos de Cliente registrado en el fichero
-        FileOutputStream fileOutputStreamCliente = new FileOutputStream("ObjetoCliente.txt");
+        FileOutputStream fileOutputStreamCliente = new FileOutputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoCliente.txt");
         ObjectOutputStream objectOutStreamCliente = new ObjectOutputStream(fileOutputStreamCliente);
         objectOutStreamCliente.writeObject(clienteNew);
         objectOutStreamCliente.close();
         //Lee e imprime los atributos del cliente registrado (clienteNew)
-        FileInputStream fileInputStreamCliente = new FileInputStream("ObjetoCliente.txt");//Método para leer los atributos del admin
+        FileInputStream fileInputStreamCliente = new FileInputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoCliente.txt");
         ObjectInputStream objectInputStreamCliente = new ObjectInputStream(fileInputStreamCliente);
         Cliente savedcliente = (Cliente) objectInputStreamCliente.readObject();
         System.out.println("------CLIENTE REGISTRADO------");
@@ -129,13 +129,53 @@ public class Cliente extends User implements Serializable {
         System.out.println("Digite 1 para REGISTER BUY; 2 para SHOW HISTORIAL; 3 para UPDATE PROFILE y 4 para SALIR:");
         System.out.println("1. REGISTER BUY");
         System.out.println("2. SHOW HISTORIAL");
-        System.out.println("3. UPDATE PROFILE");
-        System.out.println("4. SALIR");
+        System.out.println("3. PICKUP BONO");
+        System.out.println("4. UPDATE PROFILE");
+        System.out.println("5. LOG OUT");
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int menu =0;
         menu = CommonMethods.ExceptionMenuCliente(menu);
         return menu;
     }
+
+    public static Cliente UpdateProfile(int menu) throws IOException, ClassNotFoundException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+
+        int randomUserID = (int) (Math.random() * 999999);
+        String ClienteIDAux = Integer.toString(randomUserID);
+        System.out.println("Ingrese su nombre:");
+        String ClienteUserNameAux = in.readLine();
+        System.out.println("Ingrese su correo:");
+        String ClienteEmailUserAux = in.readLine();
+        System.out.println("Ingrese su Contraseña:");
+        String ClientePasswordUserAux = in.readLine();
+        System.out.println("Ingrese su teléfono:");
+        String ClientePhoneNumberAux = in.readLine();
+
+        //Método para crear el atributo de registerDate del Cliente
+        LocalDate actualDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        String ClienteRegisterDateAux = actualDate.format(formatter);
+
+        //Asigna los datos ingresados por teclado como atributos del objeto clienteNew
+        Cliente clienteUpdate = new Cliente(ClienteIDAux, ClienteUserNameAux,
+                ClienteEmailUserAux, ClientePhoneNumberAux,
+                ClientePasswordUserAux, ClienteRegisterDateAux, 0);
+
+        //Escribe los atributos de Cliente registrado en el fichero
+        FileOutputStream fileOutputStreamCliente = new FileOutputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoCliente.txt");
+        ObjectOutputStream objectOutStreamCliente = new ObjectOutputStream(fileOutputStreamCliente);
+        objectOutStreamCliente.writeObject(clienteUpdate);
+        objectOutStreamCliente.close();
+        //Lee e imprime los atributos del cliente registrado (clienteNew)
+        FileInputStream fileInputStreamCliente = new FileInputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoCliente.txt");
+        ObjectInputStream objectInputStreamCliente = new ObjectInputStream(fileInputStreamCliente);
+        System.out.println("-------------CLIENTE ACTUALIZADO-----------------");
+        Cliente savedcliente = (Cliente) objectInputStreamCliente.readObject();
+
+        return clienteUpdate;
+    }
+
     //Formato CSV
     @Override
     public String toString() {
