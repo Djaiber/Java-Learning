@@ -27,7 +27,10 @@ public class Bonification extends Shopping implements Serializable {
     public void setBonoPoints(float bonoPoints) {
         super.setBonoPoints(bonoPoints);
     }
-    public int pickUpBono(){
-        return (int) getBonoPoints();//casquear un método para que me devuelva un valor
+    public static Bonification pickUpBono(){
+        System.out.println("Escogiendo recompensa...");
+        //return (int) getBonoPoints();//casquear un método para que me devuelva un valor
+        return null;
     }
+
 }
