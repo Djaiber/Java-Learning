@@ -55,8 +55,12 @@ public class Shopping extends Cliente implements Serializable {
     public void setBonoPoints(float bonoPoints) {
         this.bonoPoints = bonoPoints;
     }
-    public String registerBuy()  {
-
+    public static String registerBuy()  {
+        System.out.println("Registrando compra....");
+        return null;
+    }
+    public static String showHistorial()  {
+        System.out.println("Mostrando Historial de compras registradas....");
         return null;
     }
 }
