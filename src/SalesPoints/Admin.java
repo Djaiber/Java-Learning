@@ -8,6 +8,7 @@ public class Admin extends User implements Serializable{
     public Admin (String userID, String nameUser, String emailUser, String passwordUser) {
         super (userID,nameUser,emailUser,passwordUser);
     }
+
     @Override
     public String getUserID() {
         return super.getUserID();
@@ -33,31 +34,36 @@ public class Admin extends User implements Serializable{
         return super.getPasswordUser();
     }
     @Override
-    public int login(String userNameAux, String passwordAuxAux) throws IOException {
-
-        System.out.println("Ingresó como ADMINISTRADOR");
-        System.out.println("------------------ MENÚ ADMINISTRADOR --------------------");
-        System.out.println("Digite 1 para CHECK SALES y 2 para  SALIR:");
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int menu =0;
-        menu = CommonMethods.ExceptionMenuMain(menu);
-        return menu;
+    public boolean login(String userNameAux, String passwordAux) throws IOException {
+        boolean VerifiedAdmin;
+        if (userNameAux.equals(getNameUser()) && passwordAux.equals(getPasswordUser()))
+        {
+            System.out.println("Nombre y contraseña de Administrador correctos");
+            return VerifiedAdmin = true;
+        }
+        else{
+            return VerifiedAdmin = false;
+        }
     }
-    public int checkSales(int lookSales) throws IOException, ClassNotFoundException {
-        System.out.println("REVISANDO LAS VENTAS");
-        //Leer fichero ObjectCliente
-        FileInputStream fileInputStreamCliente = new FileInputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoCliente.txt");//Método para leer los atributos del admin
+    public void checkSales(int menu) throws IOException, ClassNotFoundException {
+        System.out.println("Revisando ventas registradas....");
+        FileInputStream fileInputStream = new FileInputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\RegisteredBuys.txt");
+        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+        Shopping savedBuys = (Shopping) objectInputStream.readObject();
+        System.out.println("---------VENTAS REGISTRADAS---------");
+        System.out.println(savedBuys);
+        objectInputStream.close();
+    }
+    public void checkConsumers(int menu) throws IOException, ClassNotFoundException {
+        System.out.println("Revisando Clientes registrados....");
+        //Lee e imprime los atributos del cliente registrado (clienteNew)
+        FileInputStream fileInputStreamCliente = new FileInputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoCliente.txt");
         ObjectInputStream objectInputStreamCliente = new ObjectInputStream(fileInputStreamCliente);
         Cliente savedcliente = (Cliente) objectInputStreamCliente.readObject();
-        System.out.println("----------------CLIENTES REGISTRADOS-----------------");
-        //Método para mostrar todos los clientes registrados
-
+        System.out.println("---------CLIENTES REGISTRADOS---------");
+        //Leer base de datos
         System.out.println(savedcliente);
         objectInputStreamCliente.close();
-        System.out.println("\tDigite 2 para SALIR:");
-        int menu =0;
-        menu = CommonMethods.ExceptionMenuAdmin(menu);
-        return menu;
     }
     //Formato CSV
     @Override
