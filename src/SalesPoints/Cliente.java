@@ -18,13 +18,6 @@ public class Cliente extends User implements Serializable {
         this.resgisterDate= resgisterDate;
         this.bonoPoints = bonoPoints;
         this.userId1 = "";
-
-    }
-
-    public Cliente(String userID, float bonoPoints) {
-        super(userID);
-        this.userId1 = "";
-        this.bonoPoints = bonoPoints;
     }
 
     @Override
@@ -43,12 +36,10 @@ public class Cliente extends User implements Serializable {
     public void setNameUser(String nameUser) {
         super.setNameUser(nameUser);
     }
-
     @Override
     public String getEmailUser() {
         return super.getEmailUser();
     }
-
     @Override
     public void setEmailUser(String emailUser) {
         super.setEmailUser(emailUser);
@@ -64,19 +55,15 @@ public class Cliente extends User implements Serializable {
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
     public float getBonoPoints() {
         return bonoPoints;
     }
-
     public void setBonoPoints(float bonoPoints) {
         this.bonoPoints = bonoPoints;
 }
-
     public String getResgisterDate() { return resgisterDate;}
     public void setResgisterDate(String resgisterDate) {this.resgisterDate = resgisterDate;}
 
@@ -114,7 +101,7 @@ public class Cliente extends User implements Serializable {
         FileInputStream fileInputStreamCliente = new FileInputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoCliente.txt");
         ObjectInputStream objectInputStreamCliente = new ObjectInputStream(fileInputStreamCliente);
         Cliente savedcliente = (Cliente) objectInputStreamCliente.readObject();
-        System.out.println("------CLIENTE REGISTRADO------");
+        System.out.println("------CLIENTES REGISTRADOS------");
         System.out.println(savedcliente);
         objectInputStreamCliente.close();
 
@@ -123,19 +110,17 @@ public class Cliente extends User implements Serializable {
 
     //Método para ingresar como cliente
     @Override
-    public int login(String userID, String password) throws IOException {
-        System.out.println("Ingresó como CLIENTE");
-        System.out.println("------------------ MENÚ CLIENTE --------------------");
-        System.out.println("Digite 1 para REGISTER BUY; 2 para SHOW HISTORIAL; 3 para UPDATE PROFILE y 4 para SALIR:");
-        System.out.println("1. REGISTER BUY");
-        System.out.println("2. SHOW HISTORIAL");
-        System.out.println("3. PICKUP BONO");
-        System.out.println("4. UPDATE PROFILE");
-        System.out.println("5. LOG OUT");
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        int menu =0;
-        menu = CommonMethods.ExceptionMenuCliente(menu);
-        return menu;
+    public boolean login(String userNameAux, String passwordAux) throws IOException {
+        boolean VerifiedCliente;
+        if (userNameAux.equals(getNameUser()) && passwordAux.equals(getPasswordUser()))
+        {
+            System.out.println("Nombre y contraseña de Cliente correctos");
+            return VerifiedCliente = true;
+        }
+        else{
+            System.out.println("Datos incorrectos o no existentes");
+            return VerifiedCliente = false;
+        }
     }
 
     public static Cliente UpdateProfile(int menu) throws IOException, ClassNotFoundException {
