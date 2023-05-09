@@ -4,17 +4,18 @@ import java.io.*;
 import java.util.Scanner;
 
 
+
 public class Main {
 
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         Scanner scanner = new Scanner(System.in);
+
         //Atributos objetos administrador
         Admin admin = new Admin("125467", "Martha", "martha54leo@gmail.com", "12345678");
         //Atributos ejemplo de objeto Cliente
-        Cliente cliente1 = new Cliente("646416", "Jaiber Diaz",
-                "djaiver9@gmailcom", "jaibL123", "3173074159", "2023/05/04", 0);
-        CommonMethods numberRegistered = new CommonMethods(2);
+        Cliente cliente1 = new Cliente("646416", "Jaiber",
+                "djaiver9@gmailcom", "1234", "3173074159", "2023/05/04", 10);
         //Escribe los atributos de administrador en el fichero
         FileOutputStream fileOutputStreamAdmin = new FileOutputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoAdmin.txt");
         ObjectOutputStream objectOutStreamAdmin= new ObjectOutputStream(fileOutputStreamAdmin);
@@ -28,10 +29,9 @@ public class Main {
         objectInputStream.close();
 
 
-
         System.out.println("----------------------------------------------------------");
         System.out.println("------------------ DISTRIPIZZA POINTS --------------------");
-        System.out.println("------------------------------¡Donde tus compras cuenta!--");
+        System.out.println("-------------------------------¡Donde tus compras cuentan!");
         System.out.println("Digite 1 para LOGIN or 2 para SIGN IN:");
         System.out.println("1. LOGIN");
         System.out.println("2. SIGN IN");
@@ -39,8 +39,9 @@ public class Main {
         int menu =0;
         menu = CommonMethods.ExceptionMenuMain(menu);
         int goodOption = menu;
-        do {
 
+        do {
+            int aux = 0;
             if (goodOption == 1) {
                 System.out.println("----------------------------------------------------------");
                 System.out.println("------------------------- LOGIN --------------------------");
@@ -49,47 +50,91 @@ public class Main {
                 String userNameAux = in.readLine();
                 System.out.println("\t Ingrese su password:");
                 String passwordAux = in.readLine();
-                if (userNameAux.equals(admin.getNameUser()) && passwordAux.equals(admin.getPasswordUser())) {
-                    int login = admin.login(userNameAux,passwordAux);
-                    int checkSales = 0;
-                    if (login==1){
-                        checkSales = admin.checkSales(login);
-                    }
-                    if (login==2|| checkSales==2){
-                        System.out.println("\t Ha salido del MENÚ ADMINISTRADOR");
+                //------------------------------------------------------------------------------------------------------------------
+                boolean loginAdmin = admin.login(userNameAux, passwordAux);
+                if (loginAdmin) {
+                    System.out.println("Ingresó como ADMINISTRADOR");
+                    do {
+                        System.out.println("------------------ MENÚ ADMINISTRADOR --------------------");
+                        System.out.println("Digite 1 para CHECK SALES y 2 para  SALIR:");
+                        System.out.println("1. CHECK SALES");
+                        System.out.println("2. CHECK CONSUMERS");
+                        System.out.println("3. SALIR");
+                        menu = CommonMethods.ExceptionMenuAdmin(menu);
+                        if (menu == 1) {
+                            admin.checkSales(menu);
+                            scanner.nextLine();
+                        }
+                        if (menu == 2) {
+                            admin.checkConsumers(menu);
+                            scanner.nextLine();
+                        }
+                    } while (menu != 3);
+                    System.out.println("\t Ha salido del MENÚ ADMINISTRADOR");
+                    aux = 1;
+                }
+                //-----------------------------------------------------------------------------------------------------------------
+                boolean loginCliente;
+                if (aux == 0) {
+                    loginCliente = cliente1.login(userNameAux, passwordAux);
+
+                    if (loginCliente) {
+                        System.out.println("Ingresó como CLIENTE");
+                        do {
+                            System.out.println("------------------ MENÚ CLIENTE --------------------");
+                            System.out.println("Digite 1 para REGISTER BUY; 2 para SHOW HISTORIAL; 3 para SHOW HISTORIAL; 4 para UPDATE PROFILE y 5 para SALIR:");
+                            System.out.println("1. REGISTER BUY");
+                            System.out.println("2. SHOW HISTORIAL");
+                            System.out.println("3. PICKUP BONO");
+                            System.out.println("4. UPDATE PROFILE");
+                            System.out.println("5. LOG OUT");
+                            menu = CommonMethods.ExceptionMenuCliente(menu);
+
+                            if (menu == 1) {
+                                System.out.println("---------------REGISTRAR COMPRA-------------------");
+                                String clienteId = cliente1.getUserID();
+                                String clienteName = cliente1.getNameUser();
+                                Shopping registerBuy = Shopping.registerBuy(clienteId, clienteName);
+                                System.out.println("DATOS COMPRA REGISTRADA:" + registerBuy);
+                                float newPoints= registerBuy.getBonoPoints();
+                                float oldPoints= cliente1.getBonoPoints();
+                                cliente1.setBonoPoints(oldPoints+newPoints);
+                                System.out.println("Puntos actualizados:"+cliente1.getBonoPoints());
+                                scanner.nextLine();
+                            }
+                            if (menu == 2) {
+                                System.out.println("---------------HISTORIAL DE COMPRAS-------------");
+                                String clienteId = cliente1.getUserID();
+                                Shopping.showHistorial(clienteId);
+                                scanner.nextLine();
+                                //Crear un query para que muestre todos los registros del cliente ingresado
+                            }
+                            if (menu == 3) {
+                                //¿Implementarlo en el main o en una clase?
+                                System.out.println("---------------RECLAMAR RECOMPENSAS-------------");
+                                System.out.println("Escogiendo recompensa...");
+                                System.out.println("TIPO DE RECOMPENSA");
+                                System.out.println("1. Adiós Sueño (50 Puntos)");
+                                System.out.println("2. Adiós Hambre (100 Puntos)");
+                                System.out.println("3. No traigo Almuerzo (200 Puntos)");
+                                int bonoOption = Integer.parseInt(in.readLine());
+                                Bonification.pickUpBono(bonoOption);
+
+                                scanner.nextLine();
+                                //De acuerdo a los atributos elegir una de las tres recompensas
+                            }
+                            if (menu == 4) {
+                                System.out.println("--------------ACTUALIZAR PERFIL-------------------");
+                                //Retorna un nuevo objeto
+                                Cliente UpdateProfile = Cliente.UpdateProfile(menu);
+                                //GUARDAR TABLA CLIENTES
+                                scanner.nextLine();
+                            }
+                        }
+                        while (menu != 5);
+                        System.out.println("Ha salido del MENÚ CLIENTE");
                     }
                 }
-                int login = 0;
-                do {
-                    if (!userNameAux.equals(admin.getNameUser()) && !passwordAux.equals(admin.getPasswordUser())) {
-                        login = cliente1.login(userNameAux, passwordAux);
-                    }
-
-                    if (login == 1) {
-                        System.out.println("---------------REGISTRAR COMPRA-------------------");
-                        Shopping.registerBuy();
-                        scanner.nextLine();
-                    }
-                    if (login == 2) {
-                        System.out.println("---------------HISTORIAL DE COMPRAS-------------");
-                        Shopping.showHistorial();
-                        scanner.nextLine();
-                    }
-                    if (login == 3) {
-                        System.out.println("---------------RECLAMAR RECOMPENSAS-------------");
-                        Bonification.pickUpBono();
-                        scanner.nextLine();
-                    }
-                    if (login == 4) {
-                        System.out.println("--------------ACTUALIZAR PERFIL-------------------");
-                        Cliente UpdateProfile = Cliente.UpdateProfile(login);
-                        scanner.nextLine();
-
-                    }
-                }while(login!=5);
-                    System.out.println("SALIÓ DEL MENU CLIENTE");
-
-
             }
             if (goodOption == 2) {
                 System.out.println("----------------------------------------------------------");
@@ -97,8 +142,6 @@ public class Main {
                 System.out.println("----------------------------------------------------------");
                 //Método para registrar un nuevo cliente
                 Cliente registered = Cliente.registerCliente(goodOption);
-                numberRegistered.ContadorClientes = numberRegistered.ContadorClientes + 1;
-                System.out.println("Número de Clientes Registrados: " + numberRegistered.ContadorClientes);
                 //Limpia los atributos del objeto registered
                 registered.setUserID(null);
                 registered.setNameUser(null);
