@@ -14,8 +14,6 @@ public abstract class User implements Serializable {
         this.nameUser= nameUser;
         this.emailUser = emailUser;
         this.passwordUser = passwordUser;
-
-
     }
 
     public User(String userID) {
@@ -46,6 +44,6 @@ public abstract class User implements Serializable {
         this.passwordUser = passwordUser;
     }
 
-    public abstract int login(String userID, String passwordUser) throws IOException;
+    public abstract boolean login(String userID, String passwordUser) throws IOException;
 
 }
