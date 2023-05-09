@@ -56,6 +56,7 @@ public class Main {
                     System.out.println("Ingresó como ADMINISTRADOR");
                     do {
                         System.out.println("------------------ MENÚ ADMINISTRADOR --------------------");
+                        System.out.println("!!!Bienvenido Administrador "+ cliente1.getNameUser() +"¡¡¡");
                         System.out.println("Digite 1 para CHECK SALES y 2 para  SALIR:");
                         System.out.println("1. CHECK SALES");
                         System.out.println("2. CHECK CONSUMERS");
@@ -71,7 +72,7 @@ public class Main {
                         }
                     } while (menu != 3);
                     System.out.println("\t Ha salido del MENÚ ADMINISTRADOR");
-                    aux = 1;
+                    aux = 1;//Variable para evitar que se revalue los atributos ingresados de Admin en Cliente
                 }
                 //-----------------------------------------------------------------------------------------------------------------
                 boolean loginCliente;
@@ -82,6 +83,7 @@ public class Main {
                         System.out.println("Ingresó como CLIENTE");
                         do {
                             System.out.println("------------------ MENÚ CLIENTE --------------------");
+                            System.out.println("!!!Bienvenido querido cliente "+ cliente1.getNameUser() +"¡¡¡");
                             System.out.println("Digite 1 para REGISTER BUY; 2 para SHOW HISTORIAL; 3 para SHOW HISTORIAL; 4 para UPDATE PROFILE y 5 para SALIR:");
                             System.out.println("1. REGISTER BUY");
                             System.out.println("2. SHOW HISTORIAL");
@@ -110,18 +112,25 @@ public class Main {
                                 //Crear un query para que muestre todos los registros del cliente ingresado
                             }
                             if (menu == 3) {
-                                //¿Implementarlo en el main o en una clase?
-                                System.out.println("---------------RECLAMAR RECOMPENSAS-------------");
-                                System.out.println("Escogiendo recompensa...");
-                                System.out.println("TIPO DE RECOMPENSA");
-                                System.out.println("1. Adiós Sueño (50 Puntos)");
-                                System.out.println("2. Adiós Hambre (100 Puntos)");
-                                System.out.println("3. No traigo Almuerzo (200 Puntos)");
-                                int bonoOption = Integer.parseInt(in.readLine());
-                                Bonification.pickUpBono(bonoOption);
+                                int bonoOption;
+                                do {
+                                    System.out.println("---------------RECLAMAR RECOMPENSAS-------------");
+                                    System.out.println("Escogiendo recompensa...");
+                                    System.out.println("Puntos Actuales: " + cliente1.getBonoPoints());
+                                    System.out.println("TIPO DE RECOMPENSA");
+                                    System.out.println("1. Adiós Sueño (50 Puntos)");
+                                    System.out.println("2. Adiós Hambre (100 Puntos)");
+                                    System.out.println("3. No traigo Almuerzo (200 Puntos)");
+                                    System.out.println("4. Salir de RECLAMAR RECOMPENSAS");
+                                    bonoOption = CommonMethods.ExceptionMenuRecompensa(menu);
+                                    int pickUpBono = Bonification.pickUpBono(cliente1.getUserID(), bonoOption, cliente1.getBonoPoints());
+                                    if (pickUpBono!=0) {
+                                        cliente1.setBonoPoints(cliente1.getBonoPoints() - pickUpBono);
+                                        System.out.println("Puntos restantes: " + cliente1.getBonoPoints());
+                                        scanner.nextLine();
+                                    }
 
-                                scanner.nextLine();
-                                //De acuerdo a los atributos elegir una de las tres recompensas
+                                }while(bonoOption!=4);
                             }
                             if (menu == 4) {
                                 System.out.println("--------------ACTUALIZAR PERFIL-------------------");
