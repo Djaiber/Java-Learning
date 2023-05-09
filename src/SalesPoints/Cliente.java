@@ -8,7 +8,7 @@ public class Cliente extends User implements Serializable {
 
     protected String phoneNumber;
     protected String resgisterDate;
-    protected float bonoPoints;
+    private float bonoPoints;
     private final String userId1;
 
 
@@ -139,13 +139,14 @@ public class Cliente extends User implements Serializable {
 
         //Método para crear el atributo de registerDate del Cliente
         LocalDate actualDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String ClienteRegisterDateAux = actualDate.format(formatter);
 
         //Asigna los datos ingresados por teclado como atributos del objeto clienteNew
         Cliente clienteUpdate = new Cliente(ClienteIDAux, ClienteUserNameAux,
                 ClienteEmailUserAux, ClientePhoneNumberAux,
                 ClientePasswordUserAux, ClienteRegisterDateAux, 0);
+
 
         //Escribe los atributos de Cliente registrado en el fichero
         FileOutputStream fileOutputStreamCliente = new FileOutputStream("C:\\Users\\JAIBER DÌAZ\\IdeaProjects\\Java-Learning\\Ficheros\\ObjetoCliente.txt");
