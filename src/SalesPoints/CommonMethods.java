@@ -39,7 +39,7 @@ public class CommonMethods {
                 BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
                 menu = Integer.parseInt(in.readLine());
                 //Opción (25) para apagar el programa
-                if (menu == 2) {
+                if (menu==1||menu == 2||menu==3) {
                     break;
                 }
                 System.out.println("Digite un número válido");
