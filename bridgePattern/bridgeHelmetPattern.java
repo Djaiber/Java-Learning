@@ -1,72 +1,71 @@
-
 // Implementor interface
-interface HelmetAccessories {
-    void addAccessory(String accessory);
-    String addAccessories();
+
+interface AccesoriosCasco {
+    void agregarAccesorio(String accesorio);
+    String agregarAccesorios();
 }
 
 // Concrete Implementor 1
-class BasicHelmetAccessories implements HelmetAccessories {
-    private String accessories = "";
+class AccesoriosCascoBasico implements AccesoriosCasco {
+    private String accesorios = "";
 
     @Override
-    public void addAccessory(String accessory) {
-        accessories += accessory + "\n";
+    public void agregarAccesorio(String accesorio) {
+        accesorios += accesorio + "\n";
     }
 
     @Override
-    public String addAccessories() {
-        return "Basic Helmet Accessories:\n" + accessories;
+    public String agregarAccesorios() {
+        return "Accesorios Básicos del Casco:\n" + accesorios;
     }
 }
 
 // Concrete Implementor 2
-class PremiumHelmetAccessories implements HelmetAccessories {
-    private String accessories = "";
+class AccesoriosCascoPremium implements AccesoriosCasco {
+    private String accesorios = "";
 
     @Override
-    public void addAccessory(String accessory) {
-        accessories += accessory + "\n";
+    public void agregarAccesorio(String accesorio) {
+        accesorios += accesorio + "\n";
     }
 
     @Override
-    public String addAccessories() {
-        return "Premium Helmet Accessories:\n" + accessories;
+    public String agregarAccesorios() {
+        return "Accesorios Premium del Casco:\n" + accesorios;
     }
 }
 
 // Abstraction
-abstract class Helmet {
-    protected HelmetAccessories accessories;
+abstract class Casco {
+    protected AccesoriosCasco accesorios;
 
-    public Helmet(HelmetAccessories accessories) {
-        this.accessories = accessories;
+    public Casco(AccesoriosCasco accesorios) {
+        this.accesorios = accesorios;
     }
 
-    public abstract String assemble();
+    public abstract String ensamblar();
 }
 
 // Refined Abstraction 1
-class BasicHelmet extends Helmet {
-    public BasicHelmet(HelmetAccessories accessories) {
-        super(accessories);
+class CascoBasico extends Casco {
+    public CascoBasico(AccesoriosCasco accesorios) {
+        super(accesorios);
     }
 
     @Override
-    public String assemble() {
-        return accessories.addAccessories();
+    public String ensamblar() {
+        return accesorios.agregarAccesorios();
     }
 }
 
 // Refined Abstraction 2
-class PremiumHelmet extends Helmet {
-    public PremiumHelmet(HelmetAccessories accessories) {
-        super(accessories);
+class CascoPremium extends Casco {
+    public CascoPremium(AccesoriosCasco accesorios) {
+        super(accesorios);
     }
 
     @Override
-    public String assemble() {
-        return accessories.addAccessories();
+    public String ensamblar() {
+        return accesorios.agregarAccesorios();
     }
 }
-
