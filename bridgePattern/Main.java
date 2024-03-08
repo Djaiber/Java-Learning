@@ -1,21 +1,18 @@
-
-// Client code
 public class Main {
     public static void main(String[] args) {
-        // Basic helmet with basic accessories
-        Helmet basicHelmet = new BasicHelmet(new BasicHelmetAccessories());
-        basicHelmet.accessories.addAccessory("Chin Strap");
-        System.out.println(basicHelmet.assemble());
+        // Casco básico con accesorios básicos
+        Casco cascoBasico = new CascoBasico(new AccesoriosCascoBasico());
+        cascoBasico.accesorios.agregarAccesorio("Correa de Mentón");
+        System.out.println(cascoBasico.ensamblar());
 
         System.out.println();
 
-        // Premium helmet with premium accessories
-        Helmet premiumHelmet = new PremiumHelmet(new PremiumHelmetAccessories());
-        premiumHelmet.accessories.addAccessory("Chin Strap");
-        premiumHelmet.accessories.addAccessory("Visor");
-        premiumHelmet.accessories.addAccessory("Bluetooth Communication System");
-        System.out.println(premiumHelmet.assemble());
+        // Casco premium con accesorios premium
+        Casco cascoPremium = new CascoPremium(new AccesoriosCascoPremium());
+        cascoPremium.accesorios.agregarAccesorio("Correa de Mentón");
+        cascoPremium.accesorios.agregarAccesorio("Visera");
+        cascoPremium.accesorios.agregarAccesorio("Sistema de Comunicación Bluetooth");
+        System.out.println(cascoPremium.ensamblar());
     }
 }
-
 
