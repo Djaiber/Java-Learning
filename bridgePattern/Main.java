@@ -13,6 +13,13 @@ public class Main {
         cascoPremium.accesorios.agregarAccesorio("Visera");
         cascoPremium.accesorios.agregarAccesorio("Sistema de Comunicación Bluetooth");
         System.out.println(cascoPremium.ensamblar());
+// opciones de menu 
+/* 1. Pide tu casco 
+ * 2. Mejora tu casco---  
+ * 3.salir
+ */
+
+
     }
 }
 
