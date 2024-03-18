@@ -1,3 +1,5 @@
+//Estructura para guiarse del patron de diseño bridge
+
 // Implementor interface
 
 interface AccesoriosCasco {
